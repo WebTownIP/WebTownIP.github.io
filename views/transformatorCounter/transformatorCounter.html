@@ -1,0 +1,31 @@
+
+<div class="row">
+  <table class="col s10 offset-s1">
+    <thead>
+      <tr>
+        <th data-field="power">Мощность</th>
+        <th data-field="length">Длина</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="target in targets">
+        <td class="input-field">
+          <input ng-model="target.power" type="number"/>
+        </td>
+        <td class="input-field">
+          <input ng-model="target.length" type="number"/>
+        </td>
+        <td ng-click="removeTarget($index)" class="trash cursor-pointer center-align"><i class="material-icons">delete</i></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="row">
+  <div class="col s5 offset-s1 left-align">
+    <button ng-click="addTarget()" class="btn waves-effect waves-light btn-large blue accent-2">Добавить Приемник</button>
+  </div>
+  <div class="col s5 right-align">
+    <button ng-click="findTransformators()" ng-if="targets.length" class="btn waves-effect waves-light btn-large indigo accent-4">Определить Источники</button>
+  </div>
+</div>

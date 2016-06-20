@@ -1,0 +1,46 @@
+
+<div class="row">
+  <div class="col s10 offset-s1">
+    <div class="row center-align">
+      <table class="col s6">
+        <thead>
+          <tr>
+            <th>{{sources.data.first.transformator.type}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Мощность</td>
+            <td>Путь</td>
+          </tr>
+          <tr ng-repeat="target in sources.data.first.targets">
+            <td>{{target.power}}</td>
+            <td>{{target.length}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="col s6">
+        <thead>
+          <tr>
+            <th>{{sources.data.second.transformator.type}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Мощность</td>
+            <td>Путь</td>
+          </tr>
+          <tr ng-repeat="target in sources.data.second.targets">
+            <td>{{target.power}}</td>
+            <td>{{target.length}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col s10 offset-1 right-align">
+    <button ng-click="findTransformators()" class="btn waves-effect waves-light btn-large indigo accent-4">Пересчитать</button>
+  </div>
+</div>
