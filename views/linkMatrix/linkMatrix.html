@@ -11,7 +11,7 @@
       <tbody>
         <tr ng-repeat="row in targets">
           <td>{{row.label}}</td>
-          <td ng-repeat="col in targets"><i ng-if="row.id == col.id" class="material-icons">not_interested</i><i ng-if="row.id != col.id &amp;&amp; row.links[col.id] != 'blocked'" ng-click="changeLink(row.id, col.id, 'blocked')" class="material-icons">play_circle_outline</i><i ng-if="row.id != col.id &amp;&amp; row.links[col.id] == 'blocked'" ng-click="changeLink(row.id, col.id, 'unblocked')" class="material-icons">pause_circle_outline</i></td>
+          <td ng-repeat="col in targets"><i ng-if="row.id == col.id" class="material-icons red-text">not_interested</i><i ng-if="row.id != col.id &amp;&amp; row.links[col.id] != 'blocked'" ng-click="changeLink(row.id, col.id, 'blocked')" class="material-icons green-text">play_circle_outline</i><i ng-if="row.id != col.id &amp;&amp; row.links[col.id] == 'blocked'" ng-click="changeLink(row.id, col.id, 'unblocked')" class="material-icons red-text">pause_circle_outline</i></td>
         </tr>
       </tbody>
     </table>
