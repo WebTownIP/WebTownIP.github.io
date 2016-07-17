@@ -3,13 +3,19 @@
   <table class="col s10 offset-s1">
     <thead>
       <tr>
-        <th data-field="power">Мощность</th>
-        <th data-field="length">Длина</th>
+        <th class="center-align">№</th>
+        <th data-field="label" class="center-align">Название</th>
+        <th data-field="power" class="center-align">Мощность</th>
+        <th data-field="length" class="center-align">Длина</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="target in targets">
+        <td>{{$index + 1}}</td>
+        <td class="input-field">
+          <input type="text" ng-model="target.label"/>
+        </td>
         <td class="input-field">
           <input ng-model="target.power" type="number"/>
         </td>
@@ -26,6 +32,6 @@
     <button ng-click="addTarget()" class="btn waves-effect waves-light btn-large blue accent-2">Добавить Приемник</button>
   </div>
   <div class="col s5 right-align">
-    <button ng-click="findTransformators()" ng-if="targets.length" class="btn waves-effect waves-light btn-large indigo accent-4">Определить Источники</button>
+    <button ng-click="generateLinkMatrix()" ng-if="targets.length" class="btn waves-effect waves-light btn-large indigo accent-4">Определить Схему</button>
   </div>
 </div>
