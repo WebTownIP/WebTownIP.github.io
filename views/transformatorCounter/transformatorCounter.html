@@ -1,37 +1,85 @@
 
 <div class="row">
-  <table class="col s10 offset-s1">
-    <thead>
-      <tr>
-        <th class="center-align">№</th>
-        <th data-field="label" class="center-align">Название</th>
-        <th data-field="power" class="center-align">Мощность</th>
-        <th data-field="length" class="center-align">Длина</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="target in targets">
-        <td>{{$index + 1}}</td>
-        <td class="input-field">
-          <input type="text" ng-model="target.label"/>
-        </td>
-        <td class="input-field">
-          <input ng-model="target.power" type="number"/>
-        </td>
-        <td class="input-field">
-          <input ng-model="target.length" type="number"/>
-        </td>
-        <td ng-click="removeTarget($index)" class="trash cursor-pointer center-align"><i class="material-icons">delete</i></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="col s10 offset-s1">
+    <h5>Источник питания</h5>
+    <table>
+      <thead>
+        <tr>
+          <th data-field="x" class="center-align">X</th>
+          <th data-field="y" class="center-align">Y</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="input-field">
+            <input type="number" min="0" ng-model="source.x" class="right-align"/>
+          </td>
+          <td class="input-field">
+            <input type="number" min="0" ng-model="source.y" class="right-align"/>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col s10 offset-s1">
+    <h5>Потребители</h5>
+    <table>
+      <thead>
+        <tr>
+          <th class="center-align">№</th>
+          <th data-field="label" class="center-align">Название</th>
+          <th data-field="transformatorsCount" class="center-align">Кол-во Трансформаторов</th>
+          <th data-field="x" class="center-align">X</th>
+          <th data-field="y" class="center-align">Y</th>
+          <th data-field="power" class="center-align">P<sub>P</sub>, кВт</th>
+          <th data-field="cos" class="center-align">cos &phi;<sub>P</sub></th>
+          <th data-field="time" class="center-align">T<sub>M</sub>, ч</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="target in targets">
+          <td>{{$index + 1}}</td>
+          <td class="input-field">
+            <input type="text" ng-model="target.label"/>
+          </td>
+          <td class="input-field">
+            <input ng-model="target.transformatorsCount" type="number" max="2" min="1" class="right-align"/>
+          </td>
+          <td class="input-field">
+            <input ng-model="target.x" type="number" min="0" class="right-align"/>
+          </td>
+          <td class="input-field">
+            <input ng-model="target.y" type="number" min="0" class="right-align"/>
+          </td>
+          <td class="input-field">
+            <input ng-model="target.power" type="number" min="0" class="right-align"/>
+          </td>
+          <td class="input-field">
+            <input ng-model="target.cos" type="number" min="0" class="right-align"/>
+          </td>
+          <td class="input-field">
+            <input ng-model="target.time" type="number" min="0" class="right-align"/>
+          </td>
+          <td ng-click="removeTarget($index)" class="trash cursor-pointer center-align"><i class="material-icons">delete</i></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 <div class="row">
   <div class="col s5 offset-s1 left-align">
     <button ng-click="addTarget()" class="btn waves-effect waves-light btn-large blue accent-2">Добавить Приемник</button>
   </div>
   <div class="col s5 right-align">
+    <button ng-click="draw()" ng-if="targets.length" class="btn waves-effect waves-light btn-large indigo accent-4">Отобразить схему</button>
     <button ng-click="generateLinkMatrix()" ng-if="targets.length" class="btn waves-effect waves-light btn-large indigo accent-4">Определить Схему</button>
+  </div>
+</div>
+<div class="row">
+  <div class="col s8 offset-s2">
+    <canvas id="data-set" width="400" height="400"></canvas>
   </div>
 </div>
