@@ -36,6 +36,7 @@
           <th data-field="power" class="center-align">P<sub>P</sub>, кВт</th>
           <th data-field="cos" class="center-align">cos &phi;<sub>P</sub></th>
           <th data-field="time" class="center-align">T<sub>M</sub>, ч</th>
+          <th data-field="time" class="center-align">U<sub>ном</sub>, кВ</th>
           <th></th>
         </tr>
       </thead>
@@ -58,10 +59,13 @@
             <input ng-model="target.power" type="number" min="0" class="right-align"/>
           </td>
           <td class="input-field">
-            <input ng-model="target.cos" type="number" min="0" class="right-align"/>
+            <input ng-model="target.cos" type="number" min="0" max="1" class="right-align"/>
           </td>
           <td class="input-field">
             <input ng-model="target.time" type="number" min="0" class="right-align"/>
+          </td>
+          <td class="input-field">
+            <input ng-model="target.u" type="number" min="0" class="right-align"/>
           </td>
           <td ng-click="removeTarget($index)" class="trash cursor-pointer center-align"><i class="material-icons">delete</i></td>
         </tr>

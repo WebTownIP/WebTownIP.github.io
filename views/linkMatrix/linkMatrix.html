@@ -1,5 +1,82 @@
 
 <div class="row">
+  <div class="col-sm-12">
+    <h5>Мощности трансформаторов</h5>
+  </div>
+</div>
+<div class="row">
+  <div class="col-s12">
+    <table>
+      <thead>
+        <tr>
+          <th>№</th>
+          <th>ИП</th>
+          <th class="center-align">P<sub>P</sub>, кВт</th>
+          <th class="center-align">Q<sub>P</sub>, квар</th>
+          <th class="center-align">S<sub>P</sub>, кВ*A</th>
+          <th class="center-align">S<sub>HT</sub>, кВ*A</th>
+          <th class="center-align">k<sup>норм</sup><sub>з</sub></th>
+          <th class="center-align">k<sup>ав</sup><sub>з</sub></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="row in targets">
+          <td>{{row.id}}</td>
+          <td>{{row.label}}</td>
+          <td class="center-align">{{row.power}}</td>
+          <td class="center-align">{{row.qp}}</td>
+          <td class="center-align">{{row.sp}}</td>
+          <td class="center-align">{{row.sn.snt * row.transformatorsCount}}</td>
+          <td class="center-align">{{row.kn}}</td>
+          <td class="center-align">{{row.ka}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <h5>Нагрузка на стороне 10 кВ</h5>
+  </div>
+</div>
+<div class="row">
+  <div class="col-s12">
+    <table>
+      <thead>
+        <tr>
+          <th>№</th>
+          <th>ИП</th>
+          <th class="center-align">P<sub>P</sub>, кВт</th>
+          <th class="center-align">Q<sub>P</sub>, квар</th>
+          <th class="center-align">P<sub>T</sub>, кВт</th>
+          <th class="center-align">Q<sub>T</sub>, квар</th>
+          <th class="center-align">P<sup>BH</sup><sub>P</sub>, кВт</th>
+          <th class="center-align">Q<sup>BH</sup><sub>P</sub>, квар</th>
+          <th class="center-align">S<sup>BH</sup><sub>P</sub>, кВ*A</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="row in targets">
+          <td>{{row.id}}</td>
+          <td>{{row.label}}</td>
+          <td class="center-align">{{row.power}}</td>
+          <td class="center-align">{{row.qp}}</td>
+          <td class="center-align">{{row.pt}}</td>
+          <td class="center-align">{{row.qt}}</td>
+          <td class="center-align">{{row.pph}}</td>
+          <td class="center-align">{{row.qph}}</td>
+          <td class="center-align">{{row.sph}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <h5>Матрица связи</h5>
+  </div>
+</div>
+<div class="row">
   <div class="col-s12">
     <table>
       <thead>
