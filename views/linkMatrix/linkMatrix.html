@@ -23,12 +23,12 @@
         <tr ng-repeat="row in targets">
           <td>{{row.id}}</td>
           <td>{{row.label}}</td>
-          <td class="center-align">{{row.power}}</td>
-          <td class="center-align">{{row.qp}}</td>
-          <td class="center-align">{{row.sp}}</td>
-          <td class="center-align">{{row.sn.snt * row.transformatorsCount}}</td>
-          <td class="center-align">{{row.kn}}</td>
-          <td class="center-align">{{row.ka}}</td>
+          <td class="center-align">{{row.power | number:2}}</td>
+          <td class="center-align">{{row.qp | number:2}}</td>
+          <td class="center-align">{{row.sp | number:2}}</td>
+          <td class="center-align">{{row.sn.snt * row.transformatorsCount | number:2}}</td>
+          <td class="center-align">{{row.kn | number:2}}</td>
+          <td class="center-align">{{row.ka | number:2}}</td>
         </tr>
       </tbody>
     </table>
@@ -59,13 +59,13 @@
         <tr ng-repeat="row in targets">
           <td>{{row.id}}</td>
           <td>{{row.label}}</td>
-          <td class="center-align">{{row.power}}</td>
-          <td class="center-align">{{row.qp}}</td>
-          <td class="center-align">{{row.pt}}</td>
-          <td class="center-align">{{row.qt}}</td>
-          <td class="center-align">{{row.pph}}</td>
-          <td class="center-align">{{row.qph}}</td>
-          <td class="center-align">{{row.sph}}</td>
+          <td class="center-align">{{row.power | number:2}}</td>
+          <td class="center-align">{{row.qp | number:2}}</td>
+          <td class="center-align">{{row.pt | number:2}}</td>
+          <td class="center-align">{{row.qt | number:2}}</td>
+          <td class="center-align">{{row.pph | number:2}}</td>
+          <td class="center-align">{{row.qph | number:2}}</td>
+          <td class="center-align">{{row.sph | number:2}}</td>
         </tr>
       </tbody>
     </table>
@@ -103,13 +103,34 @@
     <button ng-click="generateSchemas()" class="btn waves-effect waves-light btn-large blue accent-2">Генерировать Схему</button>
   </div>
 </div>
-<div class="row">
-  <div class="col s8 offset-s2">
-    <div id="graph" style="height:400px"></div>
+<div ng-if="fullLinks.length" class="row">
+  <div class="col-s12">
+    <table>
+      <thead>
+        <tr>
+          <th>№</th>
+          <th>ЛЭП</th>
+          <th class="center-align">Марка и сечение</th>
+          <th class="center-align">I<sub>P</sub>, A</th>
+          <th class="center-align">j, A/м<sup>2</sup></th>
+          <th class="center-align">F<sub>Э</sub>, мм<sup>2</sup></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="row in fullLinks">
+          <td>{{$index}}</td>
+          <td>{{row.linkName}}</td>
+          <td class="center-align"><span ng-if="row.line.count != 1">{{row.line.count}} x&nbsp;</span><span>{{row.line.cut}} - {{row.line.name}}</span></td>
+          <td class="center-align">{{row.ip | number:2}}</td>
+          <td class="center-align">{{row.j | number:2}}</td>
+          <td class="center-align">{{row.f | number:2}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
 <div class="row">
   <div id="graph-container" class="col s8 offset-s2">
-    <div id="graph2" style="height:400px"></div>
+    <div id="graph" style="height:400px"></div>
   </div>
 </div>
