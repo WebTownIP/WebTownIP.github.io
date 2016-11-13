@@ -90,7 +90,7 @@
           <td>{{row.label}}</td>
           <td ng-repeat="col in targets" class="center-align"><i ng-if="row.id == col.id" class="material-icons red-text">not_interested</i><i ng-if="row.id != col.id &amp;&amp; row.links[col.id] != 'blocked'" ng-click="changeLink(row.id, col.id, 'blocked')" class="material-icons green-text">play_circle_outline</i><i ng-if="row.id != col.id &amp;&amp; row.links[col.id] == 'blocked'" ng-click="changeLink(row.id, col.id, 'unblocked')" class="material-icons red-text">pause_circle_outline</i>
             <div class="input-field">
-              <input type="number" min="0" ng-model="row.linksLength[col.id]" ng-change="changeLinkLength(row.id, col.id, row.linksLength[col.id])" ng-disabled="row.id == col.id" class="right-align"/>
+              <input type="number" min="0" ng-model="row.linksLength[col.id]" step="0.01" ng-change="changeLinkLength(row.id, col.id, row.linksLength[col.id])" ng-disabled="row.id == col.id" class="right-align"/>
             </div>
           </td>
         </tr>
