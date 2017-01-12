@@ -29,43 +29,79 @@
       <thead>
         <tr>
           <th class="center-align">№</th>
-          <th data-field="label" class="center-align">Название</th>
-          <th data-field="transformatorsCount" class="center-align">Кол-во Трансформаторов</th>
-          <th data-field="x" class="center-align">X</th>
-          <th data-field="y" class="center-align">Y</th>
-          <th data-field="power" class="center-align">P<sub>P</sub>, кВт</th>
-          <th data-field="cos" class="center-align">cos &phi;<sub>P</sub></th>
-          <th data-field="time" class="center-align">T<sub>M</sub>, ч</th>
-          <th data-field="time" class="center-align">U<sub>ном</sub>, кВ</th>
+          <th class="center-align">
+            <div>Название</div>
+            <div class="divider"></div>
+            <div>P<sub>P</sub>, кВт</div>
+          </th>
+          <th class="center-align">
+            <div>Кол-во Тр-ов</div>
+            <div class="divider"></div>
+            <div>cos &phi;<sub>P</sub></div>
+          </th>
+          <th class="center-align">
+            <div>X</div>
+            <div class="divider"></div>
+            <div>T<sub>M</sub>, ч</div>
+          </th>
+          <th class="center-align">
+            <div>Y</div>
+            <div class="divider"></div>
+            <div>U<sub>ном</sub>, кВ</div>
+          </th>
           <th></th>
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat="target in targets">
           <td>{{$index + 1}}</td>
-          <td class="input-field">
-            <input type="text" ng-model="target.label"/>
+          <td>
+            <div>
+              <div class="input-field">
+                <input type="text" ng-model="target.label"/>
+              </div>
+            </div>
+            <div>
+              <div class="input-field">
+                <input ng-model="target.power" type="number" min="0" class="right-align"/>
+              </div>
+            </div>
           </td>
-          <td class="input-field">
-            <input ng-model="target.transformatorsCount" type="number" max="2" min="1" class="right-align"/>
+          <td>
+            <div>
+              <div class="input-field">
+                <input ng-model="target.transformatorsCount" type="number" max="2" min="1" class="right-align"/>
+              </div>
+            </div>
+            <div>
+              <div class="input-field">
+                <input ng-model="target.cos" type="number" min="0" max="1" class="right-align"/>
+              </div>
+            </div>
           </td>
-          <td class="input-field">
-            <input ng-model="target.x" type="number" min="0" class="right-align"/>
+          <td>
+            <div>
+              <div class="input-field">
+                <input ng-model="target.x" type="number" min="0" class="right-align"/>
+              </div>
+            </div>
+            <div>
+              <div class="input-field">
+                <input ng-model="target.time" type="number" min="0" class="right-align"/>
+              </div>
+            </div>
           </td>
-          <td class="input-field">
-            <input ng-model="target.y" type="number" min="0" class="right-align"/>
-          </td>
-          <td class="input-field">
-            <input ng-model="target.power" type="number" min="0" class="right-align"/>
-          </td>
-          <td class="input-field">
-            <input ng-model="target.cos" type="number" min="0" max="1" class="right-align"/>
-          </td>
-          <td class="input-field">
-            <input ng-model="target.time" type="number" min="0" class="right-align"/>
-          </td>
-          <td class="input-field">
-            <input ng-model="target.u" type="number" min="0" class="right-align"/>
+          <td>
+            <div>
+              <div class="input-field">
+                <input ng-model="target.y" type="number" min="0" class="right-align"/>
+              </div>
+            </div>
+            <div>
+              <div class="input-field">
+                <input ng-model="target.u" type="number" min="0" class="right-align"/>
+              </div>
+            </div>
           </td>
           <td ng-click="removeTarget($index)" class="trash cursor-pointer center-align"><i class="material-icons">delete</i></td>
         </tr>
