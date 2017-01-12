@@ -86,6 +86,14 @@
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td>ИП</td>
+          <td ng-repeat="col in targets" class="center-align">
+            <div class="input-field">
+              <input type="number" min="0" ng-model="source.linksLength[col.id]" step="0.01" class="right-align"/>
+            </div>
+          </td>
+        </tr>
         <tr ng-repeat="row in targets">
           <td>{{row.label}}</td>
           <td ng-repeat="col in targets" class="center-align"><i ng-if="row.id == col.id" class="material-icons red-text">not_interested</i><i ng-if="row.id != col.id &amp;&amp; row.links[col.id] != 'blocked'" ng-click="changeLink(row.id, col.id, 'blocked')" class="material-icons green-text">play_circle_outline</i><i ng-if="row.id != col.id &amp;&amp; row.links[col.id] == 'blocked'" ng-click="changeLink(row.id, col.id, 'unblocked')" class="material-icons red-text">pause_circle_outline</i>
@@ -112,18 +120,72 @@
           <th>ЛЭП</th>
           <th class="center-align">Марка и сечение</th>
           <th class="center-align">I<sub>P</sub>, A</th>
+          <th class="center-align">I<sub>доп</sub>, A</th>
           <th class="center-align">j, A/м<sup>2</sup></th>
           <th class="center-align">F<sub>Э</sub>, мм<sup>2</sup></th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="row in fullLinks">
+        <tr ng-repeat="row in fullLinks" ng-if="!$last">
           <td>{{$index}}</td>
           <td>{{row.linkName}}</td>
-          <td class="center-align"><span ng-if="row.line.count != 1">{{row.line.count}} x&nbsp;</span><span>{{row.line.cut}} - {{row.line.name}}</span></td>
+          <td class="center-align"><span ng-if="row.line.count != 1">{{row.line.count}} x&nbsp;</span><span ng-show="row.line.type">ААБ,АОСБ</span><span ng-hide="row.line.type">ААШв</span><span>&nbsp;- 3 x {{row.line.cut}}</span></td>
           <td class="center-align">{{row.ip | number:2}}</td>
+          <td class="center-align">{{row.line.i * row.line.count | number:2}}</td>
           <td class="center-align">{{row.j | number:2}}</td>
           <td class="center-align">{{row.f | number:2}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div ng-if="fullLinks.length" class="row">
+  <div class="col-s12">
+    <table>
+      <thead>
+        <tr>
+          <th>№</th>
+          <th>ЛЭП</th>
+          <th class="center-align">Марка и сечение</th>
+          <th class="center-align">K<sub>уд</sub>, руб.</th>
+          <th class="center-align">L, км</th>
+          <th class="center-align">K, руб.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="row in fullLinks">
+          <td><span ng-if="!$last">{{$index}}</span></td>
+          <td>{{row.linkName}}</td>
+          <td class="center-align"><span ng-if="!$last"><span ng-if="row.line.count != 1">{{row.line.count}} x&nbsp;</span><span ng-show="row.line.type">ААБ,АОСБ</span><span ng-hide="row.line.type">ААШв</span><span>&nbsp;- 3 x {{row.line.cut}}</span></span></td>
+          <td class="center-align">{{row.kud | number:2}}</td>
+          <td class="center-align">{{row.linkLength | number:2}}</td>
+          <td class="center-align">{{row.k | number:2}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div ng-if="fullLinks.length" class="row">
+  <div class="col-s12">
+    <table>
+      <thead>
+        <tr>
+          <th>№</th>
+          <th>ЛЭП</th>
+          <th class="center-align">Марка и сечение</th>
+          <th class="center-align">K, руб.</th>
+          <th class="center-align">p<sub>a</sub>+ p<sub>0</sub>, %</th>
+          <th class="center-align">И<sub>a</sub>+ И<sub>0</sub>, руб.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="row in fullLinks">
+          <td><span ng-if="!$last">{{$index}}</span></td>
+          <td>{{row.linkName}}</td>
+          <td class="center-align"><span ng-if="!$last"><span ng-if="row.line.count != 1">{{row.line.count}} x&nbsp;</span><span ng-show="row.line.type">ААБ,АОСБ</span><span ng-hide="row.line.type">ААШв</span><span>&nbsp;- 3 x {{row.line.cut}}</span></span></td>
+          <td class="center-align">{{row.k | number:2}}</td>
+          <td class="center-align">{{row.p | number:2}}</td>
+          <td class="center-align">{{row.i | number:2}}</td>
         </tr>
       </tbody>
     </table>
