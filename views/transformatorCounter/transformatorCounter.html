@@ -1,6 +1,33 @@
 
 <div class="row">
   <div class="col s10 offset-s1">
+    <h5>Settings</h5>
+  </div>
+</div>
+<div class="row">
+  <div class="col s10 offset-s1">
+    <table>
+      <thead>
+        <tr>
+          <th data-field="x" class="center-align">Loops</th>
+          <th data-field="y" class="center-align">Success Results</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="input-field">
+            <input type="number" min="0" ng-model="settings.loops" class="right-align"/>
+          </td>
+          <td class="input-field">
+            <input type="number" min="0" ng-model="settings.successResults" class="right-align"/>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col s10 offset-s1">
     <h5>Источник питания</h5>
     <table>
       <thead>

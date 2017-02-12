@@ -141,15 +141,38 @@
 </div>
 <div class="row">
   <div class="col s5 offset-s1 left-align">
-    <button ng-click="generateSchemas()" class="btn waves-effect waves-light btn-large blue accent-2">Генерировать Схему</button>
+    <button ng-click="generateResults()" class="btn waves-effect waves-light btn-large blue accent-2">Генерировать Результаты</button>
   </div>
 </div>
-<div ng-if="fullLinks.length" class="row">
+<div ng-if="topResults.length" class="row">
+  <div class="col-sm-12">
+    <h5>Лучшие результаты</h5>
+  </div>
+</div>
+<div ng-if="topResults.length" class="row">
+  <div class="col-s12">
+    <table>
+      <thead>
+        <tr>
+          <th>№</th>
+          <th>З, уе.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="row in topResults" ng-click="showResult(row)">
+          <td>{{$index}}</td>
+          <td>{{row.cost | cost | number: 2}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div ng-if="visibleResult" class="row">
   <div class="col-sm-12">
     <h5>Соединения + токи</h5>
   </div>
 </div>
-<div ng-if="fullLinks.length" class="row">
+<div ng-if="visibleResult" class="row">
   <div class="col-s12">
     <table>
       <thead>
@@ -164,7 +187,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="row in fullLinks" ng-if="!$last">
+        <tr ng-repeat="row in visibleResult.fullLinks" ng-if="!$last">
           <td>{{$index}}</td>
           <td>{{row.linkName}}</td>
           <td class="center-align"><span ng-if="row.line.count != 1">{{row.line.count}} x&nbsp;</span><span ng-show="row.line.type">ААБ,АОСБ</span><span ng-hide="row.line.type">ААШв</span><span>&nbsp;- 3 x {{row.line.cut}}</span></td>
@@ -177,12 +200,12 @@
     </table>
   </div>
 </div>
-<div ng-if="fullLinks.length" class="row">
+<div ng-if="visibleResult" class="row">
   <div class="col-sm-12">
     <h5>Издержки на эксплуатацию</h5>
   </div>
 </div>
-<div ng-if="fullLinks.length" class="row">
+<div ng-if="visibleResult" class="row">
   <div class="col-s12">
     <table>
       <thead>
@@ -192,28 +215,28 @@
           <th class="center-align">Марка и сечение</th>
           <th class="center-align">K<sub>уд</sub>, руб.</th>
           <th class="center-align">L, км</th>
-          <th class="center-align">K, руб.</th>
+          <th class="center-align">K, уе.</th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="row in fullLinks">
+        <tr ng-repeat="row in visibleResult.fullLinks">
           <td><span ng-if="!$last">{{$index}}</span></td>
           <td>{{row.linkName}}</td>
           <td class="center-align"><span ng-if="!$last"><span ng-if="row.line.count != 1">{{row.line.count}} x&nbsp;</span><span ng-show="row.line.type">ААБ,АОСБ</span><span ng-hide="row.line.type">ААШв</span><span>&nbsp;- 3 x {{row.line.cut}}</span></span></td>
           <td class="center-align">{{row.kud | number:2}}</td>
           <td class="center-align">{{row.linkLength | number:2}}</td>
-          <td class="center-align">{{row.k | number:2}}</td>
+          <td class="center-align">{{row.k | cost | number:2}}</td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
-<div ng-if="fullLinks.length" class="row">
+<div ng-if="visibleResult" class="row">
   <div class="col-sm-12">
     <h5>Какие-то деньги</h5>
   </div>
 </div>
-<div ng-if="fullLinks.length" class="row">
+<div ng-if="visibleResult" class="row">
   <div class="col-s12">
     <table>
       <thead>
@@ -221,30 +244,30 @@
           <th>№</th>
           <th>ЛЭП</th>
           <th class="center-align">Марка и сечение</th>
-          <th class="center-align">K, руб.</th>
+          <th class="center-align">K, уе.</th>
           <th class="center-align">p<sub>a</sub>+ p<sub>0</sub>, %</th>
-          <th class="center-align">И<sub>a</sub>+ И<sub>0</sub>, руб.</th>
+          <th class="center-align">И<sub>a</sub>+ И<sub>0</sub>, уе.</th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="row in fullLinks">
+        <tr ng-repeat="row in visibleResult.fullLinks">
           <td><span ng-if="!$last">{{$index}}</span></td>
           <td>{{row.linkName}}</td>
           <td class="center-align"><span ng-if="!$last"><span ng-if="row.line.count != 1">{{row.line.count}} x&nbsp;</span><span ng-show="row.line.type">ААБ,АОСБ</span><span ng-hide="row.line.type">ААШв</span><span>&nbsp;- 3 x {{row.line.cut}}</span></span></td>
-          <td class="center-align">{{row.k | number:2}}</td>
+          <td class="center-align">{{row.k | cost | number:2}}</td>
           <td class="center-align">{{row.p}}</td>
-          <td class="center-align">{{row.i | number:2}}</td>
+          <td class="center-align">{{row.i | cost | number:2}}</td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
-<div ng-if="fullLinks.length" class="row">
+<div ng-if="visibleResult" class="row">
   <div class="col-sm-12">
     <h5>Активные Сопративления</h5>
   </div>
 </div>
-<div ng-if="fullLinks.length" class="row">
+<div ng-if="visibleResult" class="row">
   <div class="col-s12">
     <table>
       <thead>
@@ -258,7 +281,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="row in fullLinks" ng-if="!$last">
+        <tr ng-repeat="row in visibleResult.fullLinks" ng-if="!$last">
           <td>{{$index}}</td>
           <td>{{row.linkName}}</td>
           <td class="center-align"><span ng-if="row.line.count != 1">{{row.line.count}} x&nbsp;</span><span ng-show="row.line.type">ААБ,АОСБ</span><span ng-hide="row.line.type">ААШв</span><span>&nbsp;- 3 x {{row.line.cut}}</span></td>
@@ -270,12 +293,12 @@
     </table>
   </div>
 </div>
-<div ng-if="fullLinks.length" class="row">
+<div ng-if="visibleResult" class="row">
   <div class="col-sm-12">
     <h5>Потери электроэнергии</h5>
   </div>
 </div>
-<div ng-if="fullLinks.length" class="row">
+<div ng-if="visibleResult" class="row">
   <div class="col-s12">
     <table>
       <thead>
@@ -295,7 +318,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="row in fullLinks">
+        <tr ng-repeat="row in visibleResult.fullLinks">
           <td><span ng-if="!$last">{{$index}}</span></td>
           <td>{{row.linkName}}</td>
           <td class="center-align">{{row.totalResistance | number:3}}</td>
@@ -313,28 +336,28 @@
     </table>
   </div>
 </div>
-<div ng-if="fullLinks.length" class="row">
+<div ng-if="visibleResult" class="row">
   <div class="col-sm-12">
     <h5>Результат</h5>
   </div>
 </div>
-<div ng-if="fullLinks.length" class="row">
+<div ng-if="visibleResult" class="row">
   <div class="col-s12">
     <table>
       <thead>
         <tr>
-          <th class="center-align">K, руб.</th>
-          <th class="center-align">И<sub>a</sub>+ И<sub>0</sub>, руб.</th>
-          <th class="center-align">С<sub>&Delta;</sub>, руб.</th>
-          <th class="center-align">З, руб.</th>
+          <th class="center-align">K, уе.</th>
+          <th class="center-align">И<sub>a</sub>+ И<sub>0</sub>, уе.</th>
+          <th class="center-align">С<sub>&Delta;</sub>, уе.</th>
+          <th class="center-align">З, уе.</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td class="center-align">{{fullLinks[fullLinks.length - 1].k | number:2}}</td>
-          <td class="center-align">{{fullLinks[fullLinks.length - 1].i | number:2}}</td>
-          <td class="center-align">{{fullLinks[fullLinks.length - 1].c | number:2}}</td>
-          <td class="center-align">{{fullLinks[fullLinks.length - 1].z | number:2}}</td>
+          <td class="center-align">{{visibleResult.fullLinks[visibleResult.fullLinks.length - 1].k | cost | number:2}}</td>
+          <td class="center-align">{{visibleResult.fullLinks[visibleResult.fullLinks.length - 1].i | cost | number:2}}</td>
+          <td class="center-align">{{visibleResult.fullLinks[visibleResult.fullLinks.length - 1].c | cost | number:2}}</td>
+          <td class="center-align">{{visibleResult.fullLinks[visibleResult.fullLinks.length - 1].z | cost | number:2}}</td>
         </tr>
       </tbody>
     </table>
