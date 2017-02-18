@@ -169,7 +169,7 @@
 </div>
 <div ng-if="visibleResult" class="row">
   <div class="col-sm-12">
-    <h5>Соединения + токи</h5>
+    <h5>Сечения проводников</h5>
   </div>
 </div>
 <div ng-if="visibleResult" class="row">
@@ -190,7 +190,7 @@
         <tr ng-repeat="row in visibleResult.fullLinks" ng-if="!$last">
           <td>{{$index}}</td>
           <td>{{row.linkName}}</td>
-          <td class="center-align"><span ng-if="row.line.count != 1">{{row.line.count}} x&nbsp;</span><span ng-show="row.line.type">ААБ,АОСБ</span><span ng-hide="row.line.type">ААШв</span><span>&nbsp;- 3 x {{row.line.cut}}</span></td>
+          <td class="center-align"><span ng-if="row.line.count != 1">{{row.line.count}} x&nbsp;</span><span ng-show="row.line.type">АСБ</span><span ng-hide="row.line.type">ААШв</span><span>&nbsp;- 3 x {{row.line.cut}}</span></td>
           <td class="center-align">{{row.ip | number:2}}</td>
           <td class="center-align">{{row.line.i * row.line.count | number:2}}</td>
           <td class="center-align">{{row.j | number:2}}</td>
@@ -222,7 +222,7 @@
         <tr ng-repeat="row in visibleResult.fullLinks">
           <td><span ng-if="!$last">{{$index}}</span></td>
           <td>{{row.linkName}}</td>
-          <td class="center-align"><span ng-if="!$last"><span ng-if="row.line.count != 1">{{row.line.count}} x&nbsp;</span><span ng-show="row.line.type">ААБ,АОСБ</span><span ng-hide="row.line.type">ААШв</span><span>&nbsp;- 3 x {{row.line.cut}}</span></span></td>
+          <td class="center-align"><span ng-if="!$last"><span ng-if="row.line.count != 1">{{row.line.count}} x&nbsp;</span><span ng-show="row.line.type">АСБ</span><span ng-hide="row.line.type">ААШв</span><span>&nbsp;- 3 x {{row.line.cut}}</span></span></td>
           <td class="center-align">{{row.kud | number:2}}</td>
           <td class="center-align">{{row.linkLength | number:2}}</td>
           <td class="center-align">{{row.k | cost | number:2}}</td>
@@ -233,7 +233,7 @@
 </div>
 <div ng-if="visibleResult" class="row">
   <div class="col-sm-12">
-    <h5>Какие-то деньги</h5>
+    <h5>Издержки на эксплуатацию линий электропередач</h5>
   </div>
 </div>
 <div ng-if="visibleResult" class="row">
@@ -253,7 +253,7 @@
         <tr ng-repeat="row in visibleResult.fullLinks">
           <td><span ng-if="!$last">{{$index}}</span></td>
           <td>{{row.linkName}}</td>
-          <td class="center-align"><span ng-if="!$last"><span ng-if="row.line.count != 1">{{row.line.count}} x&nbsp;</span><span ng-show="row.line.type">ААБ,АОСБ</span><span ng-hide="row.line.type">ААШв</span><span>&nbsp;- 3 x {{row.line.cut}}</span></span></td>
+          <td class="center-align"><span ng-if="!$last"><span ng-if="row.line.count != 1">{{row.line.count}} x&nbsp;</span><span ng-show="row.line.type">АСБ</span><span ng-hide="row.line.type">ААШв</span><span>&nbsp;- 3 x {{row.line.cut}}</span></span></td>
           <td class="center-align">{{row.k | cost | number:2}}</td>
           <td class="center-align">{{row.p}}</td>
           <td class="center-align">{{row.i | cost | number:2}}</td>
@@ -264,7 +264,7 @@
 </div>
 <div ng-if="visibleResult" class="row">
   <div class="col-sm-12">
-    <h5>Активные Сопративления</h5>
+    <h5>Активные Сопротивления</h5>
   </div>
 </div>
 <div ng-if="visibleResult" class="row">
@@ -284,7 +284,7 @@
         <tr ng-repeat="row in visibleResult.fullLinks" ng-if="!$last">
           <td>{{$index}}</td>
           <td>{{row.linkName}}</td>
-          <td class="center-align"><span ng-if="row.line.count != 1">{{row.line.count}} x&nbsp;</span><span ng-show="row.line.type">ААБ,АОСБ</span><span ng-hide="row.line.type">ААШв</span><span>&nbsp;- 3 x {{row.line.cut}}</span></td>
+          <td class="center-align"><span ng-if="row.line.count != 1">{{row.line.count}} x&nbsp;</span><span ng-show="row.line.type">АСБ</span><span ng-hide="row.line.type">ААШв</span><span>&nbsp;- 3 x {{row.line.cut}}</span></td>
           <td class="center-align">{{row.linkLength | number:2}}</td>
           <td class="center-align">{{row.resistance.resistance | number:3}}</td>
           <td class="center-align">{{row.totalResistance | number:3}}</td>
@@ -338,7 +338,7 @@
 </div>
 <div ng-if="visibleResult" class="row">
   <div class="col-sm-12">
-    <h5>Результат</h5>
+    <h5>Лучшие результаты</h5>
   </div>
 </div>
 <div ng-if="visibleResult" class="row">
