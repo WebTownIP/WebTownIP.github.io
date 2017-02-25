@@ -26,7 +26,7 @@
           <td class="center-align">{{row.power | number:2}}</td>
           <td class="center-align">{{row.qp | number:2}}</td>
           <td class="center-align">{{row.sp | number:2}}</td>
-          <td class="center-align">{{row.sn.snt * row.transformatorsCount | number:2}}</td>
+          <td class="center-align"><span ng-if="row.transformatorsCount &gt; 1">{{row.transformatorsCount}} x&nbsp;</span><span>{{row.sn.snt | number:2}}</span></td>
           <td class="center-align">{{row.kn | number:2}}</td>
           <td class="center-align">{{row.ka | number:2}}</td>
         </tr>
@@ -200,9 +200,40 @@
     </table>
   </div>
 </div>
+<div ng-if="visibleResult &amp;&amp; visibleResult.fullLinks[visibleResult.fullLinks.length - 1].kBuild" class="row">
+  <div class="col-sm-12">
+    <h5>Стоимость строительных работ при прокладке кабелей в траншее</h5>
+  </div>
+</div>
+<div ng-if="visibleResult &amp;&amp; visibleResult.fullLinks[visibleResult.fullLinks.length - 1].kBuild" class="row">
+  <div class="col-sm-12">
+    <table>
+      <thead>
+        <tr>
+          <th>№</th>
+          <th>ЛЭП</th>
+          <th class="center-align">Марка и сечение</th>
+          <th class="center-align">K<sub>уд</sub>, уе.</th>
+          <th class="center-align">L, км</th>
+          <th class="center-align">K, уе.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="row in visibleResult.fullLinks">
+          <td><span ng-if="!$last">{{$index}}</span></td>
+          <td>{{row.linkName}}</td>
+          <td class="center-align"><span ng-if="!$last"><span ng-if="row.line.count != 1">{{row.line.count}} x&nbsp;</span><span ng-show="row.line.type">АСБ</span><span ng-hide="row.line.type">ААШв</span><span>&nbsp;- 3 x {{row.line.cut}}</span></span></td>
+          <td class="center-align">{{row.kudBuild | cost | number:2}}</td>
+          <td class="center-align">{{row.linkLength | number:2}}</td>
+          <td class="center-align">{{row.kBuild | cost | number:2}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 <div ng-if="visibleResult" class="row">
   <div class="col-sm-12">
-    <h5>Издержки на строительство</h5>
+    <h5>Капитальные затраты для ЛЭП</h5>
   </div>
 </div>
 <div ng-if="visibleResult" class="row">
@@ -213,7 +244,7 @@
           <th>№</th>
           <th>ЛЭП</th>
           <th class="center-align">Марка и сечение</th>
-          <th class="center-align">K<sub>уд</sub>, руб.</th>
+          <th class="center-align">K<sub>уд</sub>, уе.</th>
           <th class="center-align">L, км</th>
           <th class="center-align">K, уе.</th>
         </tr>
@@ -223,7 +254,7 @@
           <td><span ng-if="!$last">{{$index}}</span></td>
           <td>{{row.linkName}}</td>
           <td class="center-align"><span ng-if="!$last"><span ng-if="row.line.count != 1">{{row.line.count}} x&nbsp;</span><span ng-show="row.line.type">АСБ</span><span ng-hide="row.line.type">ААШв</span><span>&nbsp;- 3 x {{row.line.cut}}</span></span></td>
-          <td class="center-align">{{row.kud | number:2}}</td>
+          <td class="center-align">{{row.kud | cost | number:2}}</td>
           <td class="center-align">{{row.linkLength | number:2}}</td>
           <td class="center-align">{{row.k | cost | number:2}}</td>
         </tr>
@@ -254,7 +285,7 @@
           <td><span ng-if="!$last">{{$index}}</span></td>
           <td>{{row.linkName}}</td>
           <td class="center-align"><span ng-if="!$last"><span ng-if="row.line.count != 1">{{row.line.count}} x&nbsp;</span><span ng-show="row.line.type">АСБ</span><span ng-hide="row.line.type">ААШв</span><span>&nbsp;- 3 x {{row.line.cut}}</span></span></td>
-          <td class="center-align">{{row.k | cost | number:2}}</td>
+          <td class="center-align">{{(row.k + row.kBuild) | cost | number:2}}</td>
           <td class="center-align">{{row.p}}</td>
           <td class="center-align">{{row.i | cost | number:2}}</td>
         </tr>
@@ -264,7 +295,7 @@
 </div>
 <div ng-if="visibleResult" class="row">
   <div class="col-sm-12">
-    <h5>Активные Сопротивления</h5>
+    <h5>Активные сопротивления ЛЭП</h5>
   </div>
 </div>
 <div ng-if="visibleResult" class="row">
@@ -338,7 +369,7 @@
 </div>
 <div ng-if="visibleResult" class="row">
   <div class="col-sm-12">
-    <h5>Лучшие результаты</h5>
+    <h5>Технико-экономическое сравнение вариантов</h5>
   </div>
 </div>
 <div ng-if="visibleResult" class="row">
@@ -354,7 +385,7 @@
       </thead>
       <tbody>
         <tr>
-          <td class="center-align">{{visibleResult.fullLinks[visibleResult.fullLinks.length - 1].k | cost | number:2}}</td>
+          <td class="center-align">{{(visibleResult.fullLinks[visibleResult.fullLinks.length - 1].k + visibleResult.fullLinks[visibleResult.fullLinks.length - 1].kBuild) | cost | number:2}}</td>
           <td class="center-align">{{visibleResult.fullLinks[visibleResult.fullLinks.length - 1].i | cost | number:2}}</td>
           <td class="center-align">{{visibleResult.fullLinks[visibleResult.fullLinks.length - 1].c | cost | number:2}}</td>
           <td class="center-align">{{visibleResult.fullLinks[visibleResult.fullLinks.length - 1].z | cost | number:2}}</td>

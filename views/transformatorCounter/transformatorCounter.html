@@ -58,6 +58,10 @@
 <div class="row">
   <div class="col s10 offset-s1">
     <h5>Потребители</h5>
+  </div>
+</div>
+<div class="row">
+  <div class="col s12">
     <table>
       <thead>
         <tr>
@@ -68,19 +72,19 @@
             <div>P<sub>P</sub>, кВт</div>
           </th>
           <th class="center-align">
-            <div>Кол-во Тр-ов</div>
+            <div>T<sub>M</sub>, ч</div>
             <div class="divider"></div>
             <div>cos &phi;<sub>P</sub></div>
           </th>
           <th class="center-align">
-            <div>X</div>
-            <div class="divider"></div>
-            <div>T<sub>M</sub>, ч</div>
-          </th>
-          <th class="center-align">
-            <div>Y</div>
+            <div>К-во Т-ов</div>
             <div class="divider"></div>
             <div>U<sub>ном</sub>, кВ</div>
+          </th>
+          <th class="center-align">
+            <div>X</div>
+            <div class="divider"></div>
+            <div>Y</div>
           </th>
           <th></th>
         </tr>
@@ -103,7 +107,7 @@
           <td>
             <div>
               <div class="input-field">
-                <input ng-model="target.transformatorsCount" type="number" max="2" min="1" class="right-align"/>
+                <input ng-model="target.time" type="number" min="0" class="right-align"/>
               </div>
             </div>
             <div>
@@ -115,24 +119,24 @@
           <td>
             <div>
               <div class="input-field">
-                <input ng-model="target.x" type="number" min="0" class="right-align"/>
+                <select ng-model="target.transformatorsCount" ng-options="t for t in [1, 2]" class="right-align browser-default"></select>
               </div>
             </div>
             <div>
               <div class="input-field">
-                <input ng-model="target.time" type="number" min="0" class="right-align"/>
+                <select ng-model="target.u" ng-options="t for t in [6, 10]" class="right-align browser-default"></select>
               </div>
             </div>
           </td>
           <td>
             <div>
               <div class="input-field">
-                <input ng-model="target.y" type="number" min="0" class="right-align"/>
+                <input ng-model="target.x" type="number" min="0" class="right-align"/>
               </div>
             </div>
             <div>
               <div class="input-field">
-                <input ng-model="target.u" type="number" min="0" class="right-align"/>
+                <input ng-model="target.y" type="number" min="0" class="right-align"/>
               </div>
             </div>
           </td>
