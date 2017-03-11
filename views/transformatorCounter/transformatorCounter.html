@@ -1,7 +1,7 @@
 
 <div class="row">
   <div class="col s10 offset-s1">
-    <h5>Настройки</h5>
+    <h5>Внесите исходные данные</h5>
   </div>
 </div>
 <div class="row">
@@ -9,8 +9,8 @@
     <table>
       <thead>
         <tr>
-          <th class="center-align">К-во циклов </th>
-          <th class="center-align">К-во лучших результатов</th>
+          <th class="center-align">Число генерируемых результатов</th>
+          <th class="center-align">Число лучших результатов</th>
         </tr>
       </thead>
       <tbody>
@@ -34,7 +34,7 @@
 </div>
 <div class="row">
   <div class="col s10 offset-s1">
-    <h5>Источник питания</h5>
+    <h5>Координаты источника питания</h5>
     <table>
       <thead>
         <tr>
@@ -57,7 +57,7 @@
 </div>
 <div class="row">
   <div class="col s10 offset-s1">
-    <h5>Потребители</h5>
+    <h5>Параметры потребителей</h5>
   </div>
 </div>
 <div class="row">
@@ -152,7 +152,7 @@
   </div>
   <div class="col s5 right-align">
     <button ng-click="draw()" ng-if="targets.length" class="btn waves-effect waves-light btn-large indigo accent-4">Отобразить схему</button>
-    <button ng-click="generateLinkMatrix()" ng-if="targets.length" class="btn waves-effect waves-light btn-large indigo accent-4">Определить Схему</button>
+    <button ng-click="generateLinkMatrix()" ng-if="targets.length" class="btn waves-effect waves-light btn-large indigo accent-4">Определить связи между ТП</button>
   </div>
 </div>
 <div class="row">
